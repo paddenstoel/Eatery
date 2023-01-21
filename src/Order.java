@@ -20,6 +20,7 @@ public class Order {
         for (int i = 0; i < this.dishes.length; i++) {
             if (this.dishes[i] == null) {
                 this.dishes[i] = dish;
+                this.numberOfOrderedDishes++;
                 return true;
             }
         }
@@ -31,6 +32,7 @@ public class Order {
         for (int i = 0; i < this.dishes.length; i++) {
             if (this.dishes[i].getName().equals(name)) {
                 this.dishes[i] = null;
+                this.numberOfOrderedDishes--;
                 return true;
             }
         }
@@ -45,9 +47,41 @@ public class Order {
             if (this.dishes[i].getName().equals(name)) {
                 this.dishes[i] = null;
                 numberOfDeletedDishes++;
+                this.numberOfOrderedDishes--;
             }
         }
 
         return numberOfDeletedDishes;
+    }
+
+    public int getNumberOfOrderedDishes() {
+        return this.numberOfOrderedDishes;
+    }
+
+    //TODO возвращать новый массив, в котором будут лежать not null элементы
+    public Dish[] getDishes() {
+        return this.dishes;
+    }
+
+    public double getTotalCost() {
+        double totalCost = 0.0;
+
+        for (Dish dish : this.dishes) {
+            totalCost += dish.getPrice();
+        }
+
+        return totalCost;
+    }
+
+    public int getNumberOfOrderedDishesByName(String name) {
+        int numberOfOrderedDishesByName = 0;
+
+        for (int i = 0; i < this.dishes.length; i++) {
+            if (this.dishes[i].getName().equals(name)) {
+                numberOfOrderedDishesByName++;
+            }
+        }
+
+        return numberOfOrderedDishesByName;
     }
 }
