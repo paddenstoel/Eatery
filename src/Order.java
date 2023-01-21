@@ -27,7 +27,7 @@ public class Order {
         return false;
     }
 
-    public boolean deleteDishFromOrder(String name) {
+    public boolean deleteDishFromOrderByName(String name) {
         for (int i = 0; i < this.dishes.length; i++) {
             if (this.dishes[i].getName().equals(name)) {
                 this.dishes[i] = null;
@@ -36,5 +36,18 @@ public class Order {
         }
 
         return false;
+    }
+
+    public int deleteAllDishesFromOrderByName(String name) {
+        int numberOfDeletedDishes = 0;
+
+        for (int i = 0; i < this.dishes.length; i++) {
+            if (this.dishes[i].getName().equals(name)) {
+                this.dishes[i] = null;
+                numberOfDeletedDishes++;
+            }
+        }
+
+        return numberOfDeletedDishes;
     }
 }
